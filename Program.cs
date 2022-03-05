@@ -1,8 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using wayner_de_la_cruz.Database;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<DatabaseContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddControllers();
+
+// builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -17,11 +24,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
+app.MapControllers();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+// app.MapControllerRoute(name: "default", pattern: "{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html");;
+// app.MapFallbackToFile("index.html"); ;
 
 app.Run();
