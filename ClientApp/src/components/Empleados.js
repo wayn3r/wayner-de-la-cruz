@@ -15,7 +15,7 @@ export const Empleados = () => {
   const isEmpty = !isLoading && empleados.length === 0;
   return (
     <div>
-      <Link to="/departmanto/guardar/">Agregar empleado</Link>
+      <Link to="/empleado/guardar/nuevo">Agregar empleado</Link>
       <table className="table table-striped" aria-labelledby="tabelLabel">
         <thead>
           <tr>

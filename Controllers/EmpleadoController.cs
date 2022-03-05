@@ -18,7 +18,7 @@ public class EmpleadoController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<Empleado>> Get()
     {
-        List<Empleado> empleados = await this.database.Empleados.ToListAsync();
+        List<Empleado> empleados = await this.database.Empleados.Include(x => x.Departamento).ToListAsync();
         return empleados;
     }
 }
